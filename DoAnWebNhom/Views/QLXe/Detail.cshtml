@@ -1,0 +1,93 @@
+﻿@model DoAnWebNhom.Models.XE
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>chitietsach</h2>
+
+<div>
+    <h4>THÔNG TIN CHI TIẾT Xe</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên Xe:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenXe)
+        </dd>
+
+        <dt>
+            Giá Bán:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GiaBan)
+        </dd>
+
+        <dt>
+            Mô Tả:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mota)
+        </dd>
+
+        <dt>
+            Ảnh Xe:
+        </dt>
+
+        <dd>
+            <img src="~/Hinhsanpham/@Model.AnhBia" width="100" />
+        </dd>
+
+        <dt>
+            Ngày Cập Nhật:
+        </dt>
+
+        <dd>
+            @String.Format("{0:dd/MM/yyyy}", Model.Ngaycapnhat)
+        </dd>
+
+        <dt>
+            Số Lượng Tồn:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Soluongton)
+        </dd>
+
+        <dt>
+            Tên Loại Xe:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LOAIXE.TenLoaiXe)
+        </dd>
+        <dt>
+            Màu Xe:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MAUXE.TenMauXe)
+        </dd>
+        <dt>
+            Tên Nhà Cung Cấp:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NHACUNGCAP.TenNCC)
+        </dd>
+
+
+
+    </dl>
+</div>
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10 my-3">
+        <a href="@Url.Action("Edit","QLXe", new { id = Model.MaXe })" class="btn btn-info">Chỉnh sửa</a>
+        <a href="@Url.Action("Xe","QLXe")" class="btn btn-success">Quay lại</a>
+    </div>
+</div>

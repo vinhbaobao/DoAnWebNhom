@@ -1,0 +1,112 @@
+﻿@model DoAnWebNhom.Models.XE
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Cập nhật thông tin Xe</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.MaXe)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TenXe, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TenXe, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TenXe, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.GiaBan, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.GiaBan, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.GiaBan, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.BienSoXe, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.BienSoXe, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.BienSoXe, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Mota, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Mota, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Mota, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.AnhBia, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <img src="~/Hinhsanpham/@Model.AnhBia" width="100" />
+            <input type="file" name="fileupload" />
+            @ViewBag.Thongbao
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Ngaycapnhat, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @String.Format("{0:dd/MM/yyyy}", Model.Ngaycapnhat);
+            <input type="date" name="Ngaycapnhat" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Soluongton, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Soluongton, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Soluongton, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.MaLoai, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+            @Html.DropDownList("MaLoai")
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.MaNCC, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+            @Html.DropDownList("MaNCC")
+        </div>
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.MaMau, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+            @Html.DropDownList("MaMau")
+        </div>
+
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10 my-3">
+            <input type="submit" value="Lưu" class="btn btn-info" />
+            <a href="@Url.Action("Xe","QLXe")" class="btn btn-success">Quay lại</a>
+
+        </div>
+    </div>
+</div>
+}
+

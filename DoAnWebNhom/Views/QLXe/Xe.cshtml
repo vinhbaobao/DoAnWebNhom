@@ -1,0 +1,84 @@
+﻿@using DoAnWebNhom.Models
+@model IEnumerable<DoAnWebNhom.Models.XE>
+@{
+    ViewBag.Title = "Quản lý Xe";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-6">
+                <strong class="text-danger text-uppercase">TẤT CẢ XE</strong>
+            </div>
+            <div class="col-md-6 text-right">
+                <a href="@Url.Action("Create","QLXe")" clas="btn btn-success btn-sm"><i class="fas fa-plus"></i>Thêm</a>
+                <a href="Detrash" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>Thùng rác</a>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <table id="myTable" class="table table-bordered table-hover table-striped">
+            <thead>
+                <tr>
+                    <th style="width:20px;" class="text-center">#</th>
+                    <th style="width:200px">Tên Xe</th>
+                    <th style="width:100px">Giá Bán</th>
+                    <th style="width:300px">Mô tả </th>
+                    <th style="width:120px">Ảnh Bìa </th>
+                    <th style="width:150px">Ngày cập nhật</th>
+                    <th style="width:120px"> SL Tồn</th>
+                    <th style="width:120px">Tên Loại Xe </th>
+                    <th style="width:100px"> Nhà Cung Cấp </th>
+
+                    <th style="width:200px;" class="text-center">Chức năng</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <input name="STT" type="checkbox" class="text-center" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenXe)
+                        </td>
+                        <td>
+                            @String.Format("{0:0,0}", item.GiaBan)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Mota)
+                        </td>
+                        <td>
+
+                            <img src="@Url.Content("~/Hinhsanpham/" + item.AnhBia)" width="100" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Ngaycapnhat)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Soluongton)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LOAIXE.TenLoaiXe)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NHACUNGCAP.TenNCC)
+                        </td>
+                        <td class="text-center">
+
+                            <a class="btn btn-info btn-sm" href="@Url.Action("Edit","QLXe",new { id = item.MaXe})"><i class="fas fa-edit"></i></a>
+                            <a class="btn btn-warning btn-sm" href="@Url.Action("Detail","QLXe",new { id = item.MaXe})"><i class="fas fa-eye"></i></a>
+                            <a class="btn btn-danger btn-sm" href="@Url.Action("Delete","QLXe",new { id =  item.MaXe})"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

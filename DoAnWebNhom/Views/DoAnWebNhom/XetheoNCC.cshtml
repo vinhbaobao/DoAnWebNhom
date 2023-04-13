@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "XetheoNCC";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>Xe Theo Hãng</h2>
+
+
+<div class="row">
+    @foreach (var xe in Model)
+    {
+        <a href="@Url.Action("Chitietxe", "DoAnWebNhom", new { id = xe.MaXe})">
+            <div class="col-sm-4 col-lg-4 col-md-4">
+                <div class="thumbnail">
+                    <img alt="@xe.TenXe" src="~/Hinhsanpham/@xe.AnhBia" width="200" />
+                    <div class="caption">
+                        <h4 class="pull-right">@xe.GiaBan</h4>
+                        <br />
+                        <h4 style="text-align:center"> @xe.TenXe  </h4>
+                    </div>
+                    <div class="ratings">
+                        <p class="pull-right">15 reviews</p>
+                        <p>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </a>
+    }
+</div>

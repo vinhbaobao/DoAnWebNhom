@@ -1,0 +1,245 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Shop Homepage - Start Bootstrap Template</title>
+
+    <!-- Bootstrap Core CSS -->
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+
+    <link href="~/Content/shop-homepage.css" rel="stylesheet" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="@Url.Action("Index","DoAnWebNhom")">TRANG CHỦ</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">GIỚI THIỆU</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Dangky","NguoiDung")"> ĐĂNG KÝ</a>
+                    </li>
+
+                    <li>
+                        <a href="@Url.Action("Lienhe","DoAnWebNhom")">LIÊN HỆ</a>
+                    </li>
+                    <li>
+                        @Html.Action("GiohangPartal", "Giohang")
+                    </li>
+                    <li>
+                        @{var userSession = Session["TaiKhoan"] as DoAnWebNhom.Models.KHACHHANG;}
+                        @if (userSession != null)
+                        {
+                            <div class="dropdown show">
+                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin-top:10px">
+                                    @userSession.HoTen
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="@Url.Action("DangXuat", "NguoiDung")">Đăng xuất</a>
+
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("DangNhap", "NguoiDung")">Đăng nhập</a>
+                        }
+                    </li>
+                    <!-- Add phần tìm kiếm vào trang chu -->
+                    <li style="margin-top:15px">
+                        <form name="timkiem" action="@Url.Action("Search","DoAnWebNhom")">
+                            @using (Html.BeginForm(FormMethod.Get))
+                            {
+
+                                <input id="SearchString" name="SearchString" type="text" value="" placeholder="Tìm kiếm....">
+
+                                <button type="submit"><i style="font-size:15px" class="glyphicon glyphicon-search"></i></button>
+
+
+                            }
+                        </form>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container ">
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <p class="lead">CÁC LOẠI XE</p>
+                @Html.Action("Loaixe", "DoAnWebNhom")
+                <p class="lead">NHÀ CUNG CẤP</p>
+                @Html.Action("Nhacungcap", "DoAnWebNhom")
+            </div>
+
+            <div class="col-md-9">
+
+                <div class="row carousel-holder">
+
+                    <div class="col-md-12">
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <img class="slide-image" src="~/images/Hinh6.jpg" alt="">
+                                </div>
+                                <div class="item">
+                                    <img class="slide-image" src="~/images/Hinh7.jpg" alt="">
+                                </div>
+                                <div class="item">
+                                    <img class="slide-image" src="~/images/Hinh8.jpg" alt="">
+                                </div>
+                            </div>
+                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div>
+                    @RenderBody()
+
+                </div>
+
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.container -->
+    <!-- Footer duoi trang -->
+    <footer>
+        <div class="container">
+            <div class="footer-col-1">
+                <p>
+                    Chi Nhánh 1 248/18 Hoàng Văn Thụ ( Bán xe SH , Xe Hơi ) Phường 4, Tân Bình, Thành phố Hồ Chí Minh
+                </p>
+                <p>
+                    Chi Nhánh 2 130 Phan Huy Ích (bán xe cũ ) Phường 15, Tân Bình, Thành phố Hồ Chí Minh
+                </p>
+            </div>
+
+            <div class="row">
+                <div class="links1" style=" display: flex">
+                    <ul class="link1" style=" width: 60%">
+                        <h2>Useful Link</h2>
+                        <li><a href="https://www.vintagerimblackberry.club/">Coupons</a></li>
+                        <li><a href="https://www.vintagerimblackberry.club/p/about-me.html">Blog Post </a></li>
+                        <li><a href="https://www.vintagerimblackberry.club/p/contact.html">Return Policy</a></li>
+                        <li><a href="https://www.vintagerimblackberry.club/p/terms-conditions.html">Become Affiliate</a></li>
+                    </ul>
+                    <ul class="link2">
+                        <h2>Follow us</h2>
+                        <li><a href="https://www.facebook.com/nguyenthang.pts/">Facebook</a></li>
+                        <li><a href="https://twitter.com/Xemaytantaihcm">Twitter </a></li>
+                        <li><a href="https://www.vintagerimblackberry.club/p/contact.html">Instagram</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=RAwRKHbMaz4">YouTube Giới Thiệu </a></li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="app-logo">
+                <img src="~/images/logo VFast.jpg" width="150">
+                <img src="~/images/logo YMH.png" width="150">
+                <img src="~/images/Logo1.png" width="150">
+                <img src="~/images/logoSZK.jpg" width="150">
+                <img src="~/images/Logopiaggio.jpg" width="150">
+                <img src="~/images/logoSYM.jpg" width="150">
+            </div>
+        </div>
+        <hr />
+        <p>Copyright &copy; by Vĩnh Bảo Bảo &reg; 2021</p>
+    </footer>
+    <!-- Messenger Plugin chat Code -->
+    <div id="fb-root"></div>
+
+    <!-- Your Plugin chat code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    <script>
+        var chatbox = document.getElementById('fb-customer-chat');
+        chatbox.setAttribute("page_id", "106080569123033");
+        chatbox.setAttribute("attribution", "biz_inbox");
+    </script>
+
+    <!-- Your SDK code -->
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                xfbml: true,
+                version: 'v16.0'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <!-- /.container -->
+    <!-- jQuery -->
+
+    <script src="~/Scripts/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+
+</html>

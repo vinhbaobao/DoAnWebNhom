@@ -1,0 +1,77 @@
+﻿@model IEnumerable<DoAnWebNhom.Models.DONDATHANG>
+@{
+    ViewBag.Title = "Quản lý Đơn đặt hàng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Quản lý Đơn đặt hàng</h2>
+@*Tạo khung body cho trang*@
+<div class="card-body">
+    <table id="myTable" class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <th style="width:20px;" class="text-center">#</th>
+                <th>
+                    Số đơn hàng
+                </th>
+                <th>
+                    Khách hàng
+                </th>
+                <th>
+                    Tình trạng thanh toán
+                </th>
+                <th>
+                    Tình trạng giao hàng
+                </th>
+                <th>
+                    Ngày đặt
+                </th>
+                <th>
+                    Ngày giao hàng
+                </th>
+                <th>
+                    Hình thức thanh toán
+                </th>
+
+                <th style="width:200px;" class="text-center">Chức năng</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <input name="STT" type="checkbox" class="text-center" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaDonHang)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaKH)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Dathanhtoan)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TinhTrangGiao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayDat)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayGiao)
+                    </td>
+
+
+                    <td class="text-center">
+
+                        <a class="btn btn-info btn-sm" href="@Url.Action("Edit","QLDonDH",new { id= item.MaDonHang  })"><i class="fas fa-edit"></i></a>
+                        <a class="btn btn-warning btn-sm" href="@Url.Action("Details","QLDonDH",new { id = item.MaDonHang })"><i class="fas fa-eye"></i></a>
+                        <a class="btn btn-danger btn-sm" href="@Url.Action("Delete","QLDonDH",new { id = item.MaDonHang })"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

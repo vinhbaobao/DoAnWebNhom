@@ -1,0 +1,9 @@
+﻿@model IEnumerable<DoAnWebNhom.Models.NHACUNGCAP>
+<div class="list-group">
+    @foreach (var item in Model)
+    {
+        <a href="@Url.Action("XetheoNCC", "DoAnWebNhom", new { id = item.MaNCC})" class="list-group-item">
+            @item.TenNCC
+        </a>
+    }
+</div>
